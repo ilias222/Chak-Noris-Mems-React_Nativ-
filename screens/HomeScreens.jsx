@@ -1,14 +1,22 @@
-import { useState } from 'react';
-import { Button, Image, Text, View, TextInput } from 'react-native';
+import {Image, View} from 'react-native';
 import { Styles } from '../Style';
+import { Buttos } from './UI/Buttons';
 
 export const HomeScreens = ({navigation}) => {
     return (
-        <View style={Styles.container} >
-          <Image source={require('../Img/Icon.png')} />
-          <Text style={Styles.home}>Hello, Chack Mems:)</Text>
-          <Button title='Pres to histpry Chak' 
-           onPress={() => navigation.navigate('Chak')} />
+        <View style={Styles.container}>
+          <Image 
+          source={require('../Img/Icon.png')} 
+          onPress={() => navigation.navigate('Chak')}
+          />
+          
+          <Buttos
+          press = {() => navigation.navigate('Chak')}
+          >
+            Истории Чака!
+            </Buttos>
+          
+          
         </View>
     )
 }
