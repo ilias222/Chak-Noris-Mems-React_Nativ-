@@ -40,6 +40,7 @@ API - Google переводчика (url: https://rapidapi.com)
 
 **Имеется рабочий APK файл.**
 P.S. Он не подписан, так что требуется выслущать гневные предупреждения Android.
+**Скачать:** https://github.com/ilias222/Chak-Noris-Mems-React_Nativ-/blob/main/application-05105d6c-be53-4684-aed5-7ea2f2f0ada4.apk
 
 </p>
 <hr>
