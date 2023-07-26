@@ -37,6 +37,7 @@ API - Google переводчика (url: https://rapidapi.com)
 **Получить** такой можно по адрессу: https://rapidapi.com/sibaridev/api/rapid-translate-multi-traduction
 </p>
 <p>
+<br>
 
 **Имеется рабочий APK файл.**
 
@@ -114,7 +115,11 @@ export function APIAhuckTranslate(api){         //Получаем строку 
 **Для запуска на смартфоне** (проверенно на системе Android) устанавливаем на дивайсе
 **Expo Go**
 
+<br>
+
 Запустить можно через package.json
+
+<br>
 
 **Для запуска скрина экрана дивайса**, использовался: scrcpy
 
