@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { View, Image, Text, TextInput} from 'react-native';
 import { Styles } from '../Style';
 
-import { inspect, Translate } from './Translate';
+import { Translate } from './Translate';
 import { Buttos } from './UI/Buttons';
 import { Cheked } from './UI/Cheked';
 
@@ -14,7 +14,6 @@ export const ChakScreens = () => {
     const [load, setLoad] = useState(false)
     const [toggle, setToggle] = useState(true)
     const [apikey, setApikey] = useState('')
-
 useEffect( () => {setTextChak(toggle ? ()=> 'Привет мой друг. Меня зовут Чак Норрис. \
                                             Для русского перевода нужен апи ключ. \
                                             Получить его можно по адрессу - \
@@ -26,8 +25,6 @@ useEffect( () => {setTextChak(toggle ? ()=> 'Привет мой друг. Ме�
                                             and get my new story.")}, 
 [toggle])
 
-
-
     const axio = async () =>{
         try {
             setLoad(true)
@@ -35,7 +32,7 @@ useEffect( () => {setTextChak(toggle ? ()=> 'Привет мой друг. Ме�
                 .then(data => data)
                 
             historyChak.status === 200 ? 
-            Translate(toggle, apikey, historyChak.data.value)
+            setTextChak(() => Translate(toggle, apikey, historyChak.data.value)) 
             : 
             setTextChak('Чак не ответил! Он думает.')
             
@@ -45,28 +42,6 @@ useEffect( () => {setTextChak(toggle ? ()=> 'Привет мой друг. Ме�
             setLoad(false)
         }
     }
-
-    const Translate = (toggle, apikey, bodys) => {
-        if (toggle){
-            apikey = inspect(apikey)
-        const options = {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-                'X-RapidAPI-Key': ''+apikey+'',
-                'X-RapidAPI-Host': 'rapid-translate-multi-traduction.p.rapidapi.com'
-            },
-            body: `{"from":"en","to":"ru","e":"","q":["${bodys}"]}`
-        }
-        fetch('https://rapid-translate-multi-traduction.p.rapidapi.com/t', options)
-            .then(response => response.json())
-            .then(response =>{ console.log(response) 
-                setTextChak(() => response)
-            })
-    }else{
-        setTextChak(() => bodys)
-    }
-        } 
     return (
         <View style={Styles.chakTitle}>
                 
