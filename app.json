@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "chakhistory",
-    "slug": "chakhistory",
+    "name": "chakmems",
+    "slug": "chakmems",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,11 +25,11 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.iliaok.AwesomeProject"
+      "package": "com.iliaok.chakmems"
     },
     "extra": {
       "eas": {
-        "projectId": "4890362e-16c9-4500-9a3b-77e254caad1d"
+        "projectId": "e7a4e414-8e07-403b-8d16-1af35cde8c28"
       }
     }
   }

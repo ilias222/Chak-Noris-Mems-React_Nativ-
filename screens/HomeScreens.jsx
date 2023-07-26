@@ -6,14 +6,14 @@ export const HomeScreens = ({navigation}) => {
     return (
         <View style={Styles.container}>
           <Image 
-          source={require('../Img/Icon.png')} 
+          source={require('../Img/home.png')} 
           onPress={() => navigation.navigate('Chak')}
           />
           
           <Buttos
           press = {() => navigation.navigate('Chak')}
           >
-            Истории Чака!
+            Давай Чак!
             </Buttos>
           
           

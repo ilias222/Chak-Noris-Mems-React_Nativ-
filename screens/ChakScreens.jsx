@@ -1,12 +1,14 @@
+//pakage React
 import axios from 'axios';
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Image, Text, TextInput} from 'react-native';
-import { Styles } from '../Style';
-
-import { Translate } from './Translate';
+//function
+import { inspect } from './Translate';
+//UI
 import { Buttos } from './UI/Buttons';
 import { Cheked } from './UI/Cheked';
+//Stiles
+import { Styles } from '../Style';
 
 
 export const ChakScreens = () => {
@@ -14,10 +16,12 @@ export const ChakScreens = () => {
     const [load, setLoad] = useState(false)
     const [toggle, setToggle] = useState(true)
     const [apikey, setApikey] = useState('')
+
 useEffect( () => {setTextChak(toggle ? ()=> 'Привет мой друг. Меня зовут Чак Норрис. \
                                             Для русского перевода нужен апи ключ. \
                                             Получить его можно по адрессу - \
-                                            https://rapidapi.com/googlecloud/api.\
+                                            https://rapidapi.com.\
+                                            Не забудьте подписаться на сервис!\
                                             После чего введи его в строку выше' : 
                                     () => "Hello, my friend.\
                                             My name is Chuck Norris.\
@@ -25,6 +29,11 @@ useEffect( () => {setTextChak(toggle ? ()=> 'Привет мой друг. Ме�
                                             and get my new story.")}, 
 [toggle])
 
+
+/**
+ * Функция получения случайной фразы Чакка Нориса (апи)
+ * На Английском языке
+ */
     const axio = async () =>{
         try {
             setLoad(true)
@@ -32,7 +41,7 @@ useEffect( () => {setTextChak(toggle ? ()=> 'Привет мой друг. Ме�
                 .then(data => data)
                 
             historyChak.status === 200 ? 
-            setTextChak(() => Translate(toggle, apikey, historyChak.data.value)) 
+            Translate(toggle, apikey, historyChak.data.value)
             : 
             setTextChak('Чак не ответил! Он думает.')
             
@@ -42,6 +51,40 @@ useEffect( () => {setTextChak(toggle ? ()=> 'Привет мой друг. Ме�
             setLoad(false)
         }
     }
+
+    /**
+     * Функция, апи гугл переводчика
+     * @param {Переключатель Eng - Rus} toggle 
+     * @param {Апи ключ переводчика} apikey 
+     * @param {Тело запроса, случайная фраза на Англйском языке} bodys 
+     */
+    const Translate = (toggle, apikey, bodys) => {
+        if (toggle){
+            apikey = inspect(apikey)
+        const options = {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'X-RapidAPI-Key': ''+apikey+'',
+                'X-RapidAPI-Host': 'rapid-translate-multi-traduction.p.rapidapi.com'
+            },
+            body: `{"from":"en","to":"ru","e":"","q":["${bodys}"]}`
+        }
+        fetch('https://rapid-translate-multi-traduction.p.rapidapi.com/t', options)
+            .then(response => response.json())
+            .then(response => {
+            response[0] ? 
+            setTextChak(response[0]) 
+            : 
+            setTextChak('API не разобран\
+                       Проверьте правильность ключа\
+                       или Вашу подписку на\
+                       https://rapidapi.com')
+            })
+    }else{
+        setTextChak(() => bodys)
+    }
+        } 
     return (
         <View style={Styles.chakTitle}>
                 
